@@ -24,5 +24,23 @@ namespace DoDo.Repositories
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Usuario?> GetByEmailAsync(string email)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.CorreoElectronico == email);
+        }
+
+        public async Task<Usuario?> GetByResetTokenAsync(string token)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(u =>
+                u.ResetPasswordToken == token && u.ResetPasswordTokenExpiration > DateTime.UtcNow);
+        }
+
+        public async Task UpdateAsync(Usuario usuario)
+        {
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

@@ -28,6 +28,10 @@ namespace DoDo.Data.Entities
 
             [Required]
             public bool Activo { get; set; } = true;
+
+            public string? ResetPasswordToken { get; set; }
+            public DateTime? ResetPasswordTokenExpiration { get; set; }
+
         }
-    }
+}
 
