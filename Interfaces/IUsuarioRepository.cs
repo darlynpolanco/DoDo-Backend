@@ -4,7 +4,7 @@ namespace DoDo.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<Usuario> ObtenerPorCorreoAsync(string correo);
+        Task<Usuario?> ObtenerPorCorreoAsync(string correo);
         Task CrearAsync(Usuario usuario);
 
         Task<Usuario?> GetByEmailAsync(string email);

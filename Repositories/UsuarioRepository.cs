@@ -14,9 +14,10 @@ namespace DoDo.Repositories
             _context = context;
         }
 
-        public async Task<Usuario> ObtenerPorCorreoAsync(string correo)
+        public async Task<Usuario?> ObtenerPorCorreoAsync(string correo)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(u => u.CorreoElectronico == correo);
+            var us = await _context.Usuarios.FirstOrDefaultAsync(u => u.CorreoElectronico == correo);
+            return us;
         }
 
         public async Task CrearAsync(Usuario usuario)
