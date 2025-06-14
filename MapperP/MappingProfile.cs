@@ -10,8 +10,10 @@ namespace DoDo.MapperP
         {
             CreateMap<RegisterDto, Usuario>();
             CreateMap<Usuario, RegisterDto>();
+            CreateMap<Usuario, LoginDto>();
 
-            CreateMap<Usuario, LoginDto>(); 
+            CreateMap<Tarea, TodoDto>().ReverseMap();
+            CreateMap<CreateTodoDto, Tarea>();
         }
     }
 }

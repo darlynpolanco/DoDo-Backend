@@ -24,10 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Data\Entities\" />
     <Folder Include="Features\Login\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Features\Todo\NewFolder\" />
   </ItemGroup>
 
 </Project>

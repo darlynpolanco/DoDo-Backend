@@ -11,6 +11,7 @@ namespace DoDo.Data
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Tarea> Tareas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +21,12 @@ namespace DoDo.Data
             modelBuilder.Entity<Usuario>()
                 .HasIndex(u => u.CorreoElectronico)
                 .IsUnique();
+
+
+            modelBuilder.Entity<Usuario>()
+                .HasMany(u => u.Tareas)
+                .WithOne(t => t.Usuario)
+                .HasForeignKey(t => t.UsuarioId);
         }
     } 
 }

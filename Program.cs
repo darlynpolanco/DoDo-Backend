@@ -11,6 +11,7 @@ using System.Text;
 using DoDo;
 using DoDo.Configuration;
 using DoDo.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ITodoRepository).Assembly));
+//builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(Create.Handler).Assembly));
 
 
 // --- Swagger con JWT ---
@@ -58,6 +63,8 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+
+    options.CustomSchemaIds(type => type.FullName); // 👈 Agrega esto
 });
 
 // --- EF Core ---
